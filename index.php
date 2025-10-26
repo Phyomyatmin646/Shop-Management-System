@@ -335,7 +335,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=3"
                 style="text-decoration: none; color: inherit"
               >
                 <img
@@ -354,7 +354,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=4"
                 style="text-decoration: none; color: inherit"
               >
                 <img src="images/1 (4).png" alt="photo" class="card" />
@@ -365,7 +365,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=5"
                 style="text-decoration: none; color: inherit"
               >
                 <img src="images/1 (9).png" alt="photo" class="card" />
@@ -376,7 +376,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=6"
                 style="text-decoration: none; color: inherit"
               >
                 <img src="images/1 (19).jpg" alt="photo" class="card" />
@@ -390,7 +390,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=7"
                 style="text-decoration: none; color: inherit"
               >
                 <img src="images/1 (21).jpg" alt="photo" class="card" />
@@ -401,7 +401,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=8"
                 style="text-decoration: none; color: inherit"
               >
                 <img src="images/1 (9).jpg" alt="photo" class="card" />
@@ -412,7 +412,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=9"
                 style="text-decoration: none; color: inherit"
               >
                 <img src="images/1 (11).jpg" alt="photo" class="card" />
@@ -426,7 +426,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=10"
                 style="text-decoration: none; color: inherit"
               >
                 <img src="images/1 (12).jpg" alt="photo" class="card" />
@@ -437,7 +437,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=11"
                 style="text-decoration: none; color: inherit"
               >
                 <img src="images/1 (14).jpg" alt="photo" class="card" />
@@ -448,7 +448,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=12"
                 style="text-decoration: none; color: inherit"
               >
                 <img src="images/1 (15).jpg" alt="photo" class="card" />
@@ -462,7 +462,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=13"
                 style="text-decoration: none; color: inherit"
               >
                 <img
@@ -478,7 +478,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=14"
                 style="text-decoration: none; color: inherit"
               >
                 <img
@@ -494,7 +494,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=15"
                 style="text-decoration: none; color: inherit"
               >
                 <img src="images/1 (28).jpg" alt="photo" class="card" />
@@ -508,7 +508,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=16"
                 style="text-decoration: none; color: inherit"
               >
                 <img src="images/1 (2).jpg" alt="photo" class="card" />
@@ -519,7 +519,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=17"
                 style="text-decoration: none; color: inherit"
               >
                 <img src="images/1 (23).jpg" alt="photo" class="card" />
@@ -530,7 +530,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=18"
                 style="text-decoration: none; color: inherit"
               >
                 <img src="images/1 (7).jpg" alt="photo" class="card" />
@@ -544,7 +544,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=19"
                 style="text-decoration: none; color: inherit"
               >
                 <img
@@ -560,7 +560,7 @@ header("Content-Type: text/html; charset=utf-8");
           <div class="col-md-4">
             <div class="feature-box text-center">
               <a
-                href="prizing.php"
+                href="prizing.php?id=20"
                 style="text-decoration: none; color: inherit"
               >
                 <img src="images/1 (20).jpg" alt="photo" class="card" />
