@@ -253,10 +253,10 @@ header("Content-Type: text/html; charset=utf-8");
       <div class="map-container text-center mt-4">
         <div class="location text-center mt-3">
           <i class="fa-solid fa-location-dot" style="color: #ff4d4d"></i>
-          <span> No. 1217, Zay Street,Thakata Yangon, Myanmar</span>
+          <span>Thakata Yangon, Myanmar</span>
         </div>
 
-        <iframe
+        <!-- <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.930262627982!2d96.15610901429448!3d16.84093902322048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30c1ec95c4f3a3ff%3A0x742e74c5e2e8a0f2!2sYangon!5e0!3m2!1sen!2smm!4v1696154467490!5m2!1sen!2smm"
           width="100%"
           height="350"
@@ -265,7 +265,7 @@ header("Content-Type: text/html; charset=utf-8");
           loading="lazy"
           class="map"
         >
-        </iframe>
+        </iframe> -->
       </div>
     </section>
     <!-- features -->
@@ -299,12 +299,12 @@ header("Content-Type: text/html; charset=utf-8");
           </p>
           <div>
             <a href="tel:+959254921890" class="phone-link">
-              <i class="fa fa-phone"></i> -> +95 9254321890
+              <i class="fa fa-phone"></i> +95 9254321890
             </a>
           </div>
           <div>
             <a href="mailto:noodlenest8597@gmail.com" class="email-link">
-              <i class="fa fa-envelope"></i> ->noodlenest8597@gmail.com
+              <i class="fa fa-envelope"></i>noodlenest8597@gmail.com
             </a>
           </div>
         </div>

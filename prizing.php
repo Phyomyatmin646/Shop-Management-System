@@ -34,6 +34,6 @@ header("Content-Type: text/html; charset=utf-8");
     <p>Single Price: <?php echo $row['singleprice'];?>Ks</p>
     <p>1 box Price: <?php echo $row['wholeprice'];?>Ks</p>
     <p>Stock: <?php echo($row['Stock']==1)?'Available':'Out of Stock!';?></p>
-    <a href="index.php" style="test-decoration:None"><- Back to All Products List</a>
+    <a href="index.php" style="test-decoration:None"><- Back</a>
 </body>
 </html>
