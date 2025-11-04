@@ -759,26 +759,12 @@ header("Content-Type: text/html; charset=utf-8");
 
     <!-- Stats -->
     <section class="stats">
-      <div class="container text-center">
-        <div class="row">
-          <div class="col-md-3 col-6 stat-box">
-            <h3>$2,500</h3>
-            <p>Total Balance</p>
-          </div>
-          <div class="col-md-3 col-6 stat-box">
-            <h3>$1,200</h3>
-            <p>This Month</p>
-          </div>
-          <div class="col-md-3 col-6 stat-box">
-            <h3>5</h3>
-            <p>Categories</p>
-          </div>
-          <div class="col-md-3 col-6 stat-box">
-            <h3>$800</h3>
-            <p>Budget Left</p>
-          </div>
-        </div>
-      </div>
+    <div class="container text-center">
+    <h5 class="mb-3">Contact Us</h5>
+    <p class="mb-1">📍 Thaketa, Yangon, Myanmar</p>
+    <p class="mb-1">📞 +95 9254321890</p>
+    <p class="mb-3">📧 noodlenest8597@gmail.com</p>
+  </div>
     </section>
 
     <!-- Footer -->
