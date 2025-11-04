@@ -207,7 +207,7 @@ header("Content-Type: text/html; charset=utf-8");
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
         <img
-          src="images/1 (26).jpg"
+          src="images/logo.jpg"
           alt="photo"
           width="80"
           height="80"
