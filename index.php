@@ -205,6 +205,15 @@ session_start();
 
   <body>
     <!-- Navbar -->
+
+    <?php
+        session_start();
+        $cart_count = 0;
+        if(isset($_SESSION['cart'])){
+         $cart_count = array_sum(array_column($_SESSION['cart'], 'quantity'));
+        }
+    ?>
+
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
         <img
@@ -227,6 +236,22 @@ session_start();
           class="collapse navbar-collapse justify-content-end"
           id="navbarNav"
         >
+        <a href="cart.php" style="color:black; text-decoration:none; position:relative; font-size: 22px; left: -10px;">
+        🛒 Cart 
+        <?php if($cart_count > 0): ?>
+            <span style="
+                background:red;
+                color:white;
+                border-radius:50%;
+                padding:2px 6px;
+                font-size:12px;
+                position:absolute;
+                top:-5px;
+                right:-15px;">
+                <?php echo $cart_count; ?>
+            </span>
+        <?php endif; ?>
+      </a>
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="index.html">Home</a>

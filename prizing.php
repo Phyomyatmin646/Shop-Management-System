@@ -171,11 +171,68 @@ body {
     .wrapper { flex-direction: column; }
 }
 
+.add-to-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 220px;
+  font-family: sans-serif;
+}
+.unit-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.unit-option {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.unit-option.selected {
+  border-color: #007bff;
+  background: #007bff;
+  color: white;
+}
+.add-to-cart input[type="number"] {
+  width: 60px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+}
+.add-to-cart button {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 </style>
 </head>
 <body>
 
 <!-- Navbar -->
+
+<?php
+session_start();
+$cart_count = 0;
+if(isset($_SESSION['cart'])){
+    $cart_count = array_sum(array_column($_SESSION['cart'], 'quantity'));
+}
+?>
+
 <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
         <img
@@ -191,6 +248,24 @@ body {
           class="collapse navbar-collapse justify-content-end"
           id="navbarNav"
         >
+
+        <a href="cart.php" style="color:black; text-decoration:none; position:relative; left:-100px;top:20px; font-size:22px;">
+        🛒 Cart 
+            <?php if($cart_count > 0): ?>
+                <span style="
+                    background:red;
+                    color:white;
+                    border-radius:50%;
+                    padding:2px 6px;
+                    font-size:12px;
+                    position:absolute;
+                    top:0px;
+                    right:-15px;">
+                    <?php echo $cart_count; ?>
+                </span>
+            <?php endif; ?>
+        </a>
+
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="index.php">Home</a>
@@ -212,8 +287,40 @@ body {
         <p>Single Price: <?php echo htmlspecialchars($row['singleprice']); ?> Ks</p>
         <p>1 box Price: <?php echo htmlspecialchars($row['wholeprice']); ?> Ks</p>
         <p class="stock">Stock: <?php echo ($row['Stock']==1) ? 'Available' : 'Out of Stock!'; ?></p>
+        
+
+        <form method="post" action="add_to_cart.php" class="add-to-cart">
+        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+        <input type="hidden" name="unit" id="unit-input" value="piece">
+
+        <div class="unit-options">
+            <div class="unit-option selected" data-unit="piece" data-price="<?php echo $row['singleprice']; ?>">Piece</div>
+            <div class="unit-option" data-unit="box" data-price="<?php echo $row['wholeprice']; ?>">Box</div>
+        </div>
+
+            <input type="number" name="quantity" value="1" min="1">
+
+            <button type="submit" name="add_to_cart">Add to Cart</button>
+        </form>
         <a href="index.php" class="back">&larr; Back</a>
-        <a href="login.php" class="cart">Cart</a>
+
+        <script>
+const unitOptions = document.querySelectorAll('.unit-option');
+const unitInput = document.getElementById('unit-input');
+
+unitOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        // Highlight selected
+        unitOptions.forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+
+        // Update hidden input
+        unitInput.value = option.dataset.unit;
+    });
+});
+</script>
+
+
     </div>
 
 <?php
