@@ -1,5 +1,9 @@
 <?php
 include('db_connect.php');
+
+//Session Start
+session_start();
+
 if(isset($_GET['id'])){
     $id = (int)$_GET['id'];
     $sql = "SELECT * FROM products WHERE id=$id";
@@ -39,7 +43,7 @@ nav.navbar {
     color: #333;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     z-index: 9999;
-    padding: 5px 0; /* Thinner height */
+    padding: 0px 0; /* Thinner height */
 }
 
 nav .container {
@@ -64,9 +68,9 @@ nav .navbar-brand {
     font-weight: bold;
     font-size: 1.5rem;
     color: #222;
-    margin-left: 1px;
+    margin-left: -600px;
     position: relative;
-    top: -5px; /* lift slightly above logo */
+    top: -5px; 
 }
 
 /* Navigation links */
@@ -189,7 +193,7 @@ body {
         >
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
+              <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="review.html">Review</a>
@@ -200,8 +204,6 @@ body {
         </div>
       </div>
     </nav>
-
-
 
 <div class="wrapper">
     <div class="main-product">
@@ -214,15 +216,31 @@ body {
         <a href="login.php" class="cart">Cart</a>
     </div>
 
-    <div class="sidebar">
-        <h3>Other Products</h3>
+<?php
+$current_id = $_GET['id'] ?? 0; // current product id
+
+// Prepare SQL to get 10 random products excluding current
+$sql = "SELECT * FROM products WHERE id != ? ORDER BY RAND() LIMIT 10";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $current_id);
+$stmt->execute();
+$otherProducts = $stmt->get_result();
+?>
+
+<div class="sidebar">
+    <h3>Other Products</h3>
+    <?php if($otherProducts->num_rows > 0): ?>
         <?php while($other = $otherProducts->fetch_assoc()): ?>
             <a href="prizing.php?id=<?php echo $other['id']; ?>" class="sidebar-item">
-                <img src="images/<?php echo htmlspecialchars($other['image']); ?>" alt="Other Product">
+                <img src="images/<?php echo htmlspecialchars($other['image']); ?>" alt="<?php echo htmlspecialchars($other['name']); ?>">
                 <span><?php echo htmlspecialchars($other['name']); ?></span>
             </a>
         <?php endwhile; ?>
-    </div>
+    <?php else: ?>
+        <p>No other products available.</p>
+    <?php endif; ?>
+</div>
+
 </div>
 </body>
 </html>
