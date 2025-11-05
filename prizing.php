@@ -170,6 +170,12 @@ body {
 @media (max-width: 768px) {
     .wrapper { flex-direction: column; }
 }
+.cart{
+     text-decoration: none;
+     color:black;
+     font-weight:bold;
+     font-size: 1rem;
+}
 
 </style>
 </head>
@@ -192,6 +198,7 @@ body {
           id="navbarNav"
         >
           <ul class="navbar-nav">
+             <li><a href="login.php" class="cart"> 🛒 Cart</a></li>
             <li class="nav-item">
               <a class="nav-link" href="index.php">Home</a>
             </li>
@@ -199,6 +206,7 @@ body {
               <a class="nav-link" href="review.html">Review</a>
             </li>
             <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+           
             <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
           </ul>
         </div>
@@ -213,13 +221,13 @@ body {
         <p>1 box Price: <?php echo htmlspecialchars($row['wholeprice']); ?> Ks</p>
         <p class="stock">Stock: <?php echo ($row['Stock']==1) ? 'Available' : 'Out of Stock!'; ?></p>
         <a href="index.php" class="back">&larr; Back</a>
-        <a href="login.php" class="cart">Cart</a>
+        
     </div>
 
 <?php
-$current_id = $_GET['id'] ?? 0; // current product id
+$current_id = $_GET['id'] ?? 0; 
 
-// Prepare SQL to get 10 random products excluding current
+
 $sql = "SELECT * FROM products WHERE id != ? ORDER BY RAND() LIMIT 10";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $current_id);
