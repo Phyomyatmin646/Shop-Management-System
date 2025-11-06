@@ -20,7 +20,6 @@ if(isset($_GET['id'])){
     exit;
 }
 
-// Fetch other products for the sidebar
 $otherProducts = $conn->query("SELECT * FROM products WHERE id != $id LIMIT 5");
 
 header("Content-Type: text/html; charset=utf-8");
@@ -149,6 +148,7 @@ body {
     background-color: rgba(255,255,255,0.05);
     border-radius: 6px;
     transition: 0.2s;
+     text-decoration:none;
 }
 .sidebar-item:hover {
     background-color: rgba(255,255,255,0.15);
@@ -165,6 +165,7 @@ body {
     flex: 1;
     font-size: 1.1rem;
     color: #ddd;
+   
 }
 
 @media (max-width: 768px) {
@@ -249,24 +250,27 @@ if(isset($_SESSION['cart'])){
           id="navbarNav"
         >
 
-        <a href="cart.php" style="color:black; text-decoration:none; position:relative; left:-100px;top:20px; font-size:22px;">
-        🛒 Cart 
-            <?php if($cart_count > 0): ?>
-                <span style="
-                    background:red;
-                    color:white;
-                    border-radius:50%;
-                    padding:2px 6px;
-                    font-size:12px;
-                    position:absolute;
-                    top:0px;
-                    right:-15px;">
-                    <?php echo $cart_count; ?>
-                </span>
-            <?php endif; ?>
-        </a>
+        
 
           <ul class="navbar-nav">
+             <li>
+                <a href="cart.php" style="color:black; text-decoration:none; position:relative; left:-20px;top:-5px; font-size:22px;">
+                🛒 Cart 
+                <?php if($cart_count > 0): ?>
+                    <span style="
+                        background:red;
+                        color:white;
+                        border-radius:50%;
+                        padding:2px 6px;
+                         font-size:12px;
+                        osition:absolute;
+                        top:0px;
+                        right:-15px;">
+                    <?php echo $cart_count; ?>
+                      </span>
+            <?php endif; ?>
+        </a>
+             </li>
             <li class="nav-item">
               <a class="nav-link" href="index.php">Home</a>
             </li>
@@ -274,6 +278,7 @@ if(isset($_SESSION['cart'])){
               <a class="nav-link" href="review.html">Review</a>
             </li>
             <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+           
             <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
           </ul>
         </div>
@@ -324,9 +329,9 @@ unitOptions.forEach(option => {
     </div>
 
 <?php
-$current_id = $_GET['id'] ?? 0; // current product id
+$current_id = $_GET['id'] ?? 0; 
 
-// Prepare SQL to get 10 random products excluding current
+
 $sql = "SELECT * FROM products WHERE id != ? ORDER BY RAND() LIMIT 10";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $current_id);
