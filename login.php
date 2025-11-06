@@ -1,31 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+
+$login_message = "";
+$customer_message = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['login'])) {
+        $email = $_POST['loginEmail'];
+        $password = $_POST['loginPass'];
+
+        if (empty($email) || empty($password)) {
+            $login_message = "အီးမေးလ်နဲ့ password ဖြည့်ပါ။";
+        } elseif (strlen($password) < 6) {
+            $login_message = "Password အနည်းဆုံး ၆ လုံးဖြစ်ရမယ်။";
+        } else {
+            $login_message = "Login အောင်မြင်ပါသည်။";
+        }
+    }
+
+    if (isset($_POST['saveCustomer'])) {
+        $first = $_POST['firstName'];
+        $last = $_POST['lastName'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $address = $_POST['address'];
+
+        if (empty($first) || empty($last) || empty($email) || empty($phone) || empty($address)) {
+            $customer_message = "အချက်အလက်အပြည့်ဖြည့်ပါ။";
+        } else {
+            $customer_message = "Customer အချက်အလက် သိမ်းပြီးပါပြီ။";
+        }
+    }
+}
+?>
+<!doctype html>
+<html lang="my">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login & Customer Details</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #eef2fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container {
+  background: white;
+  width: 400px;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #333;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+input, textarea {
+  padding: 10px;
+  border: 1px solid #0e0d0dff;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+}
+button {
+  background: #656666ff;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+button:hover { background: #080808ff; }
+.message {
+  color: red;
+  text-align: center;
+  font-size: 14px;
+}
+.success { color: green; }
+.toggle-btn {
+  background: #6f6f70ff;
+  border: none;
+  padding: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+}
+</style>
+<script>
+function showForm(formId) {
+  document.getElementById('loginForm').style.display = 'none';
+  document.getElementById('customerForm').style.display = 'none';
+  document.getElementById(formId).style.display = 'block';
+}
+</script>
 </head>
 <body>
-   <header>
-    <h1>My Online shop </h1>
-    <div class="cart">
-    Cart: <span id="cart-count">0</span>
-    </div>
-</header>
-<main>
-    <div class="products">
 
-    <div class="product">
-    <h3>Prooduct 1</h3>
-    <button onclick="addToCart(10)">Add to cart</button>
-    </div>
-    <div class="product">
-        <h3>Product 2</h3>
-<button onclick="addToCart(10)">Add to cart</button>
-    </div>
-    </div>
-</main>
-<script src="script.js"></script>
+<div class="container">
+  <button class="toggle-btn" onclick="showForm('loginForm')">🔐 Login Form</button>
+  <button class="toggle-btn" onclick="showForm('customerForm')">👤 Customer Details</button>
+
+  <!-- Login Form -->
+  <form id="loginForm" method="POST" style="display:block;">
+    <h2>Login</h2>
+    <input type="email" name="loginEmail" placeholder="အီးမေးလ်" required>
+    <input type="password" name="loginPass" placeholder="Password" required minlength="6">
+    <button type="submit" name="login">Login</button>
+    <?php if(!empty($login_message)): ?>
+      <div class="message <?php echo (strpos($login_message, 'အောင်မြင်') !== false) ? 'success' : ''; ?>">
+        <?php echo $login_message; ?>
+      </div>
+    <?php endif; ?>
+  </form>
+
+  <!-- Customer Details Form -->
+  <form id="customerForm" method="POST" style="display:none;">
+    <h2>Customer Details</h2>
+    <input type="text" name="firstName" placeholder="နာမည် (First Name)" required>
+    <input type="text" name="lastName" placeholder="နာမည်အဆုံး (Last Name)" required>
+    <input type="email" name="email" placeholder="အီးမေးလ်" required>
+    <input type="tel" name="phone" placeholder="ဖုန်းနံပါတ် (ဥပမာ - 0945678901)" pattern="[0-9]{7,15}" required>
+    <textarea name="address" placeholder="လိပ်စာ" required></textarea>
+    <button type="submit" name="saveCustomer">Save</button>
+    <?php if(!empty($customer_message)): ?>
+      <div class="message <?php echo (strpos($customer_message, 'သိမ်းပြီး') !== false) ? 'success' : ''; ?>">
+        <?php echo $customer_message; ?>
+      </div>
+    <?php endif; ?>
+  </form>
+</div>
+
 </body>
 </html>

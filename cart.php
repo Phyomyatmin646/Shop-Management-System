@@ -1,15 +1,15 @@
 <?php
 session_start();
-include 'db_connect.php'; // Your DB connection
+include 'db_connect.php'; 
 
-// Remove empty/invalid cart items
+
 foreach($_SESSION['cart'] ?? [] as $k => $item){
     if(empty($item['id']) || $item['quantity'] < 1){
         unset($_SESSION['cart'][$k]);
     }
 }
 
-// Remove item if 'remove' parameter exists
+
 if(isset($_GET['remove'])){
     $remove_key = $_GET['remove'];
     unset($_SESSION['cart'][$remove_key]);
@@ -17,7 +17,7 @@ if(isset($_GET['remove'])){
     exit();
 }
 
-// Prepare product info from DB
+
 $cart_items = $_SESSION['cart'] ?? [];
 $grand_total = 0;
 $products = [];
@@ -62,13 +62,13 @@ if(!empty($cart_items)){
     foreach($cart_items as $key => $item){
         $product = $products[$item['id']];
 
-        // Determine price based on unit
+        
         $price = ($item['unit'] == 'piece') ? $product['singleprice'] : $product['wholeprice'];
 
         $total = $price * $item['quantity'];
         $grand_total += $total;
 
-        // Set image path
+        
         $image_path = file_exists("images/" . $product['image']) ? "images/" . $product['image'] : "images/default.png";
 
         echo "<tr>
@@ -91,3 +91,33 @@ if(!empty($cart_items)){
 }
 ?>
 </table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noodle Nest | Cash & Cart</title>
+    <style>
+        .cash{
+            text-decoration:none;
+            color: black;
+            font-weight: bold;
+
+        }
+        .cash-set{
+            margin-top:10px;
+        }
+        .back{
+    text-decoration:none;
+    color:black;
+}
+
+    </style>
+</head>
+<body>
+    <div class="cash-set">
+         <a href="prizing.php?id=1" class="back"><=Back</a><br>
+        <a href="login.php" class="cash">Cash=>💵</a>
+    </div>
+</body>
+</html>

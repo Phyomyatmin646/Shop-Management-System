@@ -263,3 +263,170 @@ nav img.pho {
 </div>
 </body>
 </html>
+
+login
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding:0;
+}
+.header{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 10px 20px;
+    background-color: #e2e9e2;
+    color: black;
+}
+nav.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #bdbabaff; 
+    color: #050404ff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 9999;
+    padding: 0px 0; 
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Logo */
+img.pho {
+    border-radius: 50%;
+    border: 3px solid #f7f4f4ff;
+    width: 77px;
+    height: 77px;
+     border-radius: 50%;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+}
+.pho:hover{
+    transform: scale(1.1);
+}
+nav .navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #222;
+    margin-left:-90px;
+   
+    top: -5px;
+
+}
+@media (max-width: 768px){
+    .nav.navbar{flex-direction: column;
+
+    }
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+input, textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+}
+button {
+  background: #007bff;
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+button:hover { background: #0056b3; }
+.message {
+  color: red;
+  text-align: center;
+  font-size: 14px;
+}
+.success { color: green; }
+.toggle-btn {
+  background: #f1f5ff;
+  border: none;
+  padding: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+}
+    </style>
+</head>
+<body>
+         <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <img
+          src="images/logo.jpg"
+          alt="photo"
+          width="80"
+          height="80"
+          class="pho"
+        />
+    <h1 class="navbar-brand">Noodle Nest | Cash & User Registration</h1>
+</nav>
+</div>    
+
+    <div class="containers">
+  <button class="toggle-btn" onclick="showForm('loginForm')">🔐 Login Form</button>
+  <button class="toggle-btn" onclick="showForm('customerForm')">👤 Customer Details</button>
+
+ 
+  <form id="loginForm" method="POST" style="display:block;">
+    <!-- <h2>Login</h2> -->
+    <input type="email" name="loginEmail" placeholder="အီးမေးလ်" required>
+    <input type="password" name="loginPass" placeholder="Password" required minlength="6">
+    <button type="submit" name="login">Login</button>
+    <?php if(!empty($login_message)): ?>
+      <div class="message <?php echo (strpos($login_message, 'အောင်မြင်') !== false) ? 'success' : ''; ?>">
+        <?php echo $login_message; ?>
+      </div>
+    <?php endif; ?>
+  </form>
+
+ 
+  <form id="customerForm" method="POST" style="display:none;">
+    <h2>Customer Details</h2>
+    <input type="text" name="firstName" placeholder="နာမည် (First Name)" required>
+    <input type="text" name="lastName" placeholder="နာမည်အဆုံး (Last Name)" required>
+    <input type="email" name="email" placeholder="အီးမေးလ်" required>
+    <input type="tel" name="phone" placeholder="ဖုန်းနံပါတ် (ဥပမာ - 0945678901)" pattern="[0-9]{7,15}" required>
+    <textarea name="address" placeholder="လိပ်စာ" required></textarea>
+    <button type="submit" name="saveCustomer">Save</button>
+    <?php if(!empty($customer_message)): ?>
+      <div class="message <?php echo (strpos($customer_message, 'သိမ်းပြီး') !== false) ? 'success' : ''; ?>">
+        <?php echo $customer_message; ?>
+      </div>
+    <?php endif; ?>
+  </form>
+</div>
+<script>
+function showForm(formId) {
+  document.getElementById('loginForm').style.display = 'none';
+  document.getElementById('customerForm').style.display = 'none';
+  document.getElementById(formId).style.display = 'block';
+}
+</script>
+</body>
+</html>
+
+ 
