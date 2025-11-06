@@ -1,7 +1,7 @@
 <?php
 include('db_connect.php');
 
-//Session Start
+
 session_start();
 
 if(isset($_GET['id'])){
@@ -38,16 +38,16 @@ nav.navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    background: #f9f9f9; /* Pale white background */
+    background: #f9f9f9; 
     color: #333;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     z-index: 9999;
-    padding: 0px 0; /* Thinner height */
+    padding: 0px 0; 
 }
 
 nav .container {
     display: flex;
-    justify-content: space-between; /* logo/name left, links right */
+    justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -60,6 +60,12 @@ nav img.pho {
     border: 3px solid #ddd;
     width: 77px;
     height: 77px;
+     border-radius: 50%;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+}
+.pho:hover{
+    transform: scale(1.1);
 }
 
 /* Brand name */
@@ -67,9 +73,10 @@ nav .navbar-brand {
     font-weight: bold;
     font-size: 1.5rem;
     color: #222;
-    margin-left: -600px;
-    position: relative;
-    top: -5px; 
+    margin-left:-90px;
+   
+    top: -5px;
+
 }
 
 /* Navigation links */
@@ -100,7 +107,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to bottom, #ffffff, #888888, #000000);
     color: #fff;
-    padding-top: 70px; /* space for fixed navbar */
+    padding-top: 70px;
 }
 
 /* Layout wrapper */
@@ -122,9 +129,9 @@ body {
     box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 .main-product img {
-    width: 100%;        /* responsive width */
-    max-width: 400px;   /* smaller max width */
-    height: auto;       /* maintain aspect ratio */
+    width: 100%;        
+    max-width: 400px;   
+    height: auto;       
     border-radius: 8px;
     border: 2px solid #fff;
 }
@@ -173,15 +180,17 @@ body {
 }
 
 .add-to-cart {
+    margin-top:20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 1px solid #ddd;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(47, 42, 42, 0.92);
   width: 220px;
   font-family: sans-serif;
+  
 }
 .unit-options {
   display: flex;
@@ -196,10 +205,11 @@ body {
   border-radius: 8px;
   cursor: pointer;
   transition: 0.2s;
+  
 }
 .unit-option.selected {
-  border-color: #007bff;
-  background: #007bff;
+  border-color: #0a0b0bff;
+  background: #0f0f0fff;
   color: white;
 }
 .add-to-cart input[type="number"] {
@@ -211,13 +221,75 @@ body {
   margin-bottom: 15px;
 }
 .add-to-cart button {
-  background: #007bff;
+  background: #48494aff;
   color: white;
   border: none;
   border-radius: 8px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+}
+.add-to-cart button:hover{
+  background-color:black;
+}
+.back{
+    text-decoration:none;
+    color:white;
+}
+/* Navbar Menu Layout */
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Hamburger button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  z-index: 10001;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: #333;
+  margin: 4px 0;
+  transition: 0.3s;
+}
+
+/* Responsive for mobile */
+@media(max-width: 768px){
+  .menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 200px;
+    background: #fff;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: right 0.3s ease;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.3);
+    z-index: 10000;
+  }
+
+  .menu.active {
+    right: 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  /* Navbar brand center fix */
+  nav .navbar-brand {
+    margin-left: 0;
+  }
 }
 
 </style>
@@ -227,6 +299,7 @@ body {
 <!-- Navbar -->
 
 <?php
+error_reporting(1);
 session_start();
 $cart_count = 0;
 if(isset($_SESSION['cart'])){
@@ -243,7 +316,12 @@ if(isset($_SESSION['cart'])){
           height="80"
           class="pho"
         />
-        <a class="navbar-brand" href="#">Noodle Nest</a>
+        <a class="navbar-brand" href="index.php">Noodle Nest</a>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
         
         <div
           class="collapse navbar-collapse justify-content-end"
@@ -271,7 +349,8 @@ if(isset($_SESSION['cart'])){
             <?php endif; ?>
         </a>
              </li>
-            <li class="nav-item">
+            <div class="menu">
+                <li class="nav-item">
               <a class="nav-link" href="index.php">Home</a>
             </li>
             <li class="nav-item">
@@ -280,6 +359,7 @@ if(isset($_SESSION['cart'])){
             <li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
            
             <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </div>
           </ul>
         </div>
       </div>
@@ -292,6 +372,7 @@ if(isset($_SESSION['cart'])){
         <p>Single Price: <?php echo htmlspecialchars($row['singleprice']); ?> Ks</p>
         <p>1 box Price: <?php echo htmlspecialchars($row['wholeprice']); ?> Ks</p>
         <p class="stock">Stock: <?php echo ($row['Stock']==1) ? 'Available' : 'Out of Stock!'; ?></p>
+        <a href="index.php" class="back"><=Back</a>
         
 
         <form method="post" action="add_to_cart.php" class="add-to-cart">
@@ -307,19 +388,19 @@ if(isset($_SESSION['cart'])){
 
             <button type="submit" name="add_to_cart">Add to Cart</button>
         </form>
-        <a href="index.php" class="back">&larr; Back</a>
+        
 
         <script>
-const unitOptions = document.querySelectorAll('.unit-option');
-const unitInput = document.getElementById('unit-input');
+let unitOptions = document.querySelectorAll('.unit-option');
+let unitInput = document.getElementById('unit-input');
 
 unitOptions.forEach(option => {
     option.addEventListener('click', () => {
-        // Highlight selected
+        
         unitOptions.forEach(o => o.classList.remove('selected'));
         option.classList.add('selected');
 
-        // Update hidden input
+      
         unitInput.value = option.dataset.unit;
     });
 });
@@ -354,6 +435,23 @@ $otherProducts = $stmt->get_result();
 </div>
 
 </div>
+
+<script>
+let hamburger = document.getElementById('hamburger');
+let menu = document.querySelector('.menu');
+
+if(hamburger && menu){
+    hamburger.addEventListener('click', () => {
+        menu.classList.toggle('active');
+    });
+
+    document.addEventListener('click', function(e) {
+        if(menu.classList.contains('active') && !menu.contains(e.target) && !hamburger.contains(e.target)){
+            menu.classList.remove('active');
+        }
+    });
+}
+</script>
 </body>
 </html>
 
