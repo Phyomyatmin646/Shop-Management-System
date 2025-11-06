@@ -20,7 +20,6 @@ if(isset($_GET['id'])){
     exit;
 }
 
-// Fetch other products for the sidebar
 $otherProducts = $conn->query("SELECT * FROM products WHERE id != $id LIMIT 5");
 
 header("Content-Type: text/html; charset=utf-8");
@@ -149,6 +148,7 @@ body {
     background-color: rgba(255,255,255,0.05);
     border-radius: 6px;
     transition: 0.2s;
+     text-decoration:none;
 }
 .sidebar-item:hover {
     background-color: rgba(255,255,255,0.15);
@@ -165,6 +165,7 @@ body {
     flex: 1;
     font-size: 1.1rem;
     color: #ddd;
+   
 }
 
 @media (max-width: 768px) {
@@ -175,6 +176,11 @@ body {
      color:black;
      font-weight:bold;
      font-size: 1rem;
+}
+.back{
+     text-decoration: none;
+     color:white;
+
 }
 
 </style>
@@ -220,7 +226,7 @@ body {
         <p>Single Price: <?php echo htmlspecialchars($row['singleprice']); ?> Ks</p>
         <p>1 box Price: <?php echo htmlspecialchars($row['wholeprice']); ?> Ks</p>
         <p class="stock">Stock: <?php echo ($row['Stock']==1) ? 'Available' : 'Out of Stock!'; ?></p>
-        <a href="index.php" class="back">&larr; Back</a>
+       <a href="index.php" class="back">&larr; Back</a>
         
     </div>
 
