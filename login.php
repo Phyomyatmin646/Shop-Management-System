@@ -11,6 +11,7 @@ $customer_message = "";
         $email = $_POST['email'];
         $phone = $_POST['phone'];
         $address = $_POST['address'];
+        $prize=$_GET[]
 
         if (empty($first) || empty($last) || empty($email) || empty($phone) || empty($address)) {
             $customer_message = "အချက်အလက်အပြည့်ဖြည့်ပါ။";
