@@ -1,46 +1,30 @@
 <?php
+
 session_start();
-$price = isset($_SESSION['total_price']) ? $_SESSION['total_price'] : 0;
+$price=isset($_SESSION['total_price'])?
+$_SESSION['total_price']:0;
 $customer_message = "";
 
-if (isset($_POST['saveCustomer'])) {
-    // Get customer data
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $address = $_POST['address'];
 
-    // Validate
-    if (empty($firstName) || empty($lastName) || empty($email) || empty($phone) || empty($address)) {
-        $customer_message = "Please fill your details";
-    } else {
-        // Save in session
-        $_SESSION['firstName'] = $firstName;
-        $_SESSION['lastName'] = $lastName;
-        $_SESSION['email'] = $email;
-        $_SESSION['phone'] = $phone;
-        $_SESSION['address'] = $address;
 
-        // Save in cookies (expire in 30 days)
-        setcookie('firstName', $firstName, time() + (30*24*60*60), "/");
-        setcookie('lastName', $lastName, time() + (30*24*60*60), "/");
-        setcookie('email', $email, time() + (30*24*60*60), "/");
-        setcookie('phone', $phone, time() + (30*24*60*60), "/");
-        setcookie('address', $address, time() + (30*24*60*60), "/");
 
-        $customer_message = "Customer အချက်အလက် သိမ်းပြီးပါပြီ။";
+    if (isset($_POST['saveCustomer'])) {
+        $_SESSION['firstName'] = $_POST['firstName'];
+        $_SESSION['lastName'] = $_POST['lastName'];
+         $_SESSION['email'] = $_POST['email'];
+         $_SESSION ['phone']= $_POST['phone'];
+        $_SESSION['address'] = $_POST['address'];
+  
+
+        if (empty($_POST['firstName'])|| empty($_POST['lastName'])|| empty($_POST['email'])||empty($_POST['phone'])||empty($_POST['address'])) {
+            $customer_message = "Please fill your details";
+        } else {
+            $customer_message = "Customer အချက်အလက် သိမ်းပြီးပါပြီ။";
+            unset($_SESSION['cart']);
+            unset($_SESSION['total_price']);
+        }
     }
-}
-
-// Pre-fill form values from cookies if available
-$cookieFirstName = $_COOKIE['firstName'] ?? '';
-$cookieLastName  = $_COOKIE['lastName'] ?? '';
-$cookieEmail     = $_COOKIE['email'] ?? '';
-$cookiePhone     = $_COOKIE['phone'] ?? '';
-$cookieAddress   = $_COOKIE['address'] ?? '';
 ?>
-
 <!doctype html>
 <html lang="my">
 <head>
@@ -117,18 +101,18 @@ function showForm(formId) {
 
 <div class="container">
  
-  <button class="toggle-btn" id="details" onclick="showForm('customerForm')">👤 Customer Details for delivary</button>
+  <button class="toggle-btn" id="details" onclick="showForm('customerForm')">👤 Customer Details for delivary</button><br>
+  <a href="cart.php" class="cat"><=Back</a>
   
  
  
   <form id="customerForm" method="POST" style="display:none;">
     <h2>Customer Details</h2>
-    <input type="text" name="firstName" placeholder="နာမည် (First Name)" value="<?php echo $cookieFirstName; ?>" required>
-<input type="text" name="lastName" placeholder="နာမည်အဆုံး (Last Name)" value="<?php echo $cookieLastName; ?>" required>
-<input type="email" name="email" placeholder="အီးမေးလ်" value="<?php echo $cookieEmail; ?>" required>
-<input type="tel" name="phone" placeholder="ဖုန်းနံပါတ် (ဥပမာ - 09*********)" pattern="[0-9]{7,15}" value="<?php echo $cookiePhone; ?>" required>
-<textarea name="address" placeholder="လိပ်စာ" required><?php echo $cookieAddress; ?></textarea>
-
+    <input type="text" name="firstName" placeholder="နာမည် (First Name)" required>
+    <input type="text" name="lastName" placeholder="နာမည်အဆုံး (Last Name)" required>
+    <input type="email" name="email" placeholder="အီးမေးလ်" required>
+    <input type="tel" name="phone" placeholder="ဖုန်းနံပါတ် (ဥပမာ - 09*********)" pattern="[0-9]{7,15}" required>
+    <textarea name="address" placeholder="လိပ်စာ" required></textarea>
     <p>Price: <?php echo $price;?>ks</p>
     <button type="submit" name="saveCustomer">Sumit to buy</button>
     <?php if(!empty($customer_message)): ?>
