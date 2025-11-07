@@ -117,7 +117,16 @@ if(!empty($cart_items)){
 <body>
     <div class="cash-set">
          <a href="prizing.php?id=1" class="back"><=Back</a><br>
-        <a href="login.php" class="cash">Cash=>💵</a>
+       
+      <?php
+      if(empty($cart_items)){
+        echo "No cash";
+      }
+      else{
+        echo '<a href="login.php" class="cash">Cash=>💵</a>';
+      }
+
+      ?>
     </div>
 </body>
 </html>

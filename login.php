@@ -1,21 +1,9 @@
 <?php
 
-$login_message = "";
+
 $customer_message = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['login'])) {
-        $email = $_POST['loginEmail'];
-        $password = $_POST['loginPass'];
 
-        if (empty($email) || empty($password)) {
-            $login_message = "အီးမေးလ်နဲ့ password ဖြည့်ပါ။";
-        } elseif (strlen($password) < 6) {
-            $login_message = "Password အနည်းဆုံး ၆ လုံးဖြစ်ရမယ်။";
-        } else {
-            $login_message = "Login အောင်မြင်ပါသည်။";
-        }
-    }
 
     if (isset($_POST['saveCustomer'])) {
         $first = $_POST['firstName'];
@@ -30,14 +18,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $customer_message = "Customer အချက်အလက် သိမ်းပြီးပါပြီ။";
         }
     }
-}
 ?>
 <!doctype html>
 <html lang="my">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Login & Customer Details</title>
+<title>Cash & Customer Details</title>
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -99,30 +86,25 @@ button:hover { background: #080808ff; }
 </style>
 <script>
 function showForm(formId) {
-  document.getElementById('loginForm').style.display = 'none';
-  document.getElementById('customerForm').style.display = 'none';
-  document.getElementById(formId).style.display = 'block';
+  document.getElementById('details').style.display = 'none'
+  document.getElementById(formId).style.display = 'block'
 }
 </script>
 </head>
 <body>
 
 <div class="container">
-  <button class="toggle-btn" onclick="showForm('loginForm')">🔐 Login Form</button>
-  <button class="toggle-btn" onclick="showForm('customerForm')">👤 Customer Details</button>
-
+  <!-- <button class="toggle-btn" onclick="showForm('loginForm')">🔐 Login Form</button> -->
+  <button class="toggle-btn" id="details" onclick="showForm('customerForm')">👤 Customer Details for delivary</button>
+  
+ 
   <!-- Login Form -->
-  <form id="loginForm" method="POST" style="display:block;">
-    <h2>Login</h2>
-    <input type="email" name="loginEmail" placeholder="အီးမေးလ်" required>
-    <input type="password" name="loginPass" placeholder="Password" required minlength="6">
-    <button type="submit" name="login">Login</button>
-    <?php if(!empty($login_message)): ?>
-      <div class="message <?php echo (strpos($login_message, 'အောင်မြင်') !== false) ? 'success' : ''; ?>">
-        <?php echo $login_message; ?>
-      </div>
-    <?php endif; ?>
-  </form>
+  <!-- <form id="loginForm" method="POST" style="display:block;"> -->
+    <!-- <h2>Login</h2> -->
+    <!-- <input type="email" name="loginEmail" placeholder="အီးမေးလ်" required> -->
+    <!-- <input type="password" name="loginPass" placeholder="Password" required minlength="6"> -->
+    <!-- <button type="submit" name="login">Login</button> -->
+  <!-- </form> -->
 
   <!-- Customer Details Form -->
   <form id="customerForm" method="POST" style="display:none;">
@@ -132,7 +114,7 @@ function showForm(formId) {
     <input type="email" name="email" placeholder="အီးမေးလ်" required>
     <input type="tel" name="phone" placeholder="ဖုန်းနံပါတ် (ဥပမာ - 0945678901)" pattern="[0-9]{7,15}" required>
     <textarea name="address" placeholder="လိပ်စာ" required></textarea>
-    <button type="submit" name="saveCustomer">Save</button>
+    <button type="submit" name="saveCustomer">Sumit</button>
     <?php if(!empty($customer_message)): ?>
       <div class="message <?php echo (strpos($customer_message, 'သိမ်းပြီး') !== false) ? 'success' : ''; ?>">
         <?php echo $customer_message; ?>
