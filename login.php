@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-$price=isset($_SESSION['total'])?
-$_SESSION['total']:0;
+$price=isset($_SESSION['total_price'])?
+$_SESSION['total_price']:0;
 $customer_message = "";
 
 
@@ -20,6 +20,7 @@ $customer_message = "";
             $customer_message = "Please fill your details";
         } else {
             $customer_message = "Customer အချက်အလက် သိမ်းပြီးပါပြီ။";
+            
         }
     }
 ?>
@@ -108,10 +109,10 @@ function showForm(formId) {
     <input type="text" name="firstName" placeholder="နာမည် (First Name)" required>
     <input type="text" name="lastName" placeholder="နာမည်အဆုံး (Last Name)" required>
     <input type="email" name="email" placeholder="အီးမေးလ်" required>
-    <input type="tel" name="phone" placeholder="ဖုန်းနံပါတ် (ဥပမာ - 0945678901)" pattern="[0-9]{7,15}" required>
+    <input type="tel" name="phone" placeholder="ဖုန်းနံပါတ် (ဥပမာ - 09*********)" pattern="[0-9]{7,15}" required>
     <textarea name="address" placeholder="လိပ်စာ" required></textarea>
-    <p>Price: <?php echo $price;?></p>
-    <button type="submit" name="saveCustomer">Sumit</button>
+    <p>Price: <?php echo $price;?>ks</p>
+    <button type="submit" name="saveCustomer">Sumit to buy</button>
     <?php if(!empty($customer_message)): ?>
       <div class="message <?php echo (strpos($customer_message, 'သိမ်းပြီး') !== false) ? 'success' : ''; ?>">
         <?php echo $customer_message; ?>
