@@ -28,6 +28,8 @@ if (isset($_POST['saveCustomer'])) {
         setcookie('address', $address, time() + 30*24*60*60, "/");
 
         $customer_message = "Customer အချက်အလက် သိမ်းပြီးပါပြီ။";
+        unset($_SESSION['cart']);
+        unset($_SESSION['total_price']);
     }
 }
 
