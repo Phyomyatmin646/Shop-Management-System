@@ -1,20 +1,23 @@
 <?php
 
-
+session_start();
+$price=isset($_SESSION['total'])?
+$_SESSION['total']:0;
 $customer_message = "";
 
 
 
-    if (isset($_POST['saveCustomer'])) {
-        $first = $_POST['firstName'];
-        $last = $_POST['lastName'];
-        $email = $_POST['email'];
-        $phone = $_POST['phone'];
-        $address = $_POST['address'];
-        $prize=$_GET[]
 
-        if (empty($first) || empty($last) || empty($email) || empty($phone) || empty($address)) {
-            $customer_message = "အချက်အလက်အပြည့်ဖြည့်ပါ။";
+    if (isset($_POST['saveCustomer'])) {
+        $_SESSION['firstName'] = $_POST['firstName'];
+        $_SESSION['lastName'] = $_POST['lastName'];
+         $_SESSION['email'] = $_POST['email'];
+         $_SESSION ['phone']= $_POST['phone'];
+        $_SESSION['address'] = $_POST['address'];
+  
+
+        if (empty($_POST['firstName'])|| empty($_POST['lastName'])|| empty($_POST['email'])||empty($_POST['phone'])||empty($_POST['address'])) {
+            $customer_message = "Please fill your details";
         } else {
             $customer_message = "Customer အချက်အလက် သိမ်းပြီးပါပြီ။";
         }
@@ -95,19 +98,11 @@ function showForm(formId) {
 <body>
 
 <div class="container">
-  <!-- <button class="toggle-btn" onclick="showForm('loginForm')">🔐 Login Form</button> -->
+ 
   <button class="toggle-btn" id="details" onclick="showForm('customerForm')">👤 Customer Details for delivary</button>
   
  
-  <!-- Login Form -->
-  <!-- <form id="loginForm" method="POST" style="display:block;"> -->
-    <!-- <h2>Login</h2> -->
-    <!-- <input type="email" name="loginEmail" placeholder="အီးမေးလ်" required> -->
-    <!-- <input type="password" name="loginPass" placeholder="Password" required minlength="6"> -->
-    <!-- <button type="submit" name="login">Login</button> -->
-  <!-- </form> -->
-
-  <!-- Customer Details Form -->
+ 
   <form id="customerForm" method="POST" style="display:none;">
     <h2>Customer Details</h2>
     <input type="text" name="firstName" placeholder="နာမည် (First Name)" required>
@@ -115,6 +110,7 @@ function showForm(formId) {
     <input type="email" name="email" placeholder="အီးမေးလ်" required>
     <input type="tel" name="phone" placeholder="ဖုန်းနံပါတ် (ဥပမာ - 0945678901)" pattern="[0-9]{7,15}" required>
     <textarea name="address" placeholder="လိပ်စာ" required></textarea>
+    <p>Price: <?php echo $price;?></p>
     <button type="submit" name="saveCustomer">Sumit</button>
     <?php if(!empty($customer_message)): ?>
       <div class="message <?php echo (strpos($customer_message, 'သိမ်းပြီး') !== false) ? 'success' : ''; ?>">

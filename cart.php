@@ -58,6 +58,8 @@ if(!empty($cart_items)){
     </tr>
 
 <?php
+session_start();
+$_SESSION['total']=$grand_total;
 if(!empty($cart_items)){
     foreach($cart_items as $key => $item){
         $product = $products[$item['id']];
@@ -66,7 +68,7 @@ if(!empty($cart_items)){
         $price = ($item['unit'] == 'piece') ? $product['singleprice'] : $product['wholeprice'];
 
         $total = $price * $item['quantity'];
-        $grand_total += $total;
+        $_SESSION['total'] += $total;
 
         
         $image_path = file_exists("images/" . $product['image']) ? "images/" . $product['image'] : "images/default.png";
@@ -130,3 +132,4 @@ if(!empty($cart_items)){
     </div>
 </body>
 </html>
+
